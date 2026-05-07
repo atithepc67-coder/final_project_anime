@@ -49,6 +49,11 @@ const animeList = [
   }
 ];
 
+// เพิ่ม 3 บรรทัดนี้ เพื่อบอก Vercel ว่าเว็บเราทำงานปกตินะ
+app.get('/', (req, res) => {
+  res.status(200).send("API is running! Go to /api/anime");
+});
+
 // Endpoint สำหรับดึงข้อมูลอนิเมะ
 app.get('/api/anime', (req, res) => {
   res.status(200).json(animeList);
