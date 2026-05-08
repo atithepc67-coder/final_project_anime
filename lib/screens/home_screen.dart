@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/user.dart';
 import '../services/auth_service.dart';
 import 'login_screen.dart';
+// 🌟 เพิ่ม import ไฟล์หน้าอนิเมะ (เดี๋ยวเราจะสร้างในขั้นตอนที่ 2)
+import 'anime_list_screen.dart'; 
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -24,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // 🌟 เปลี่ยนสีพื้นหลังให้เข้ากัน
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
         title: const Text('My Profile'),
@@ -48,10 +49,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 'Welcome, ${widget.user.fullName}!',
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 48),
+              const SizedBox(height: 32), // ปรับระยะห่างนิดหน่อย
               _buildInfoCard(icon: Icons.person, label: 'Username', value: widget.user.username),
               const SizedBox(height: 16),
               _buildInfoCard(icon: Icons.email, label: 'Email', value: widget.user.email),
+              
+              const SizedBox(height: 40),
+              
+              // 🌟 เพิ่มปุ่มสำหรับกดไปหน้า API Vercel ของเรา
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    // กดแล้วให้เปิดหน้า AnimeListScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AnimeListScreen()),
+                    );
+                  },
+                  icon: const Icon(Icons.movie, color: Colors.white),
+                  label: const Text(
+                    'Explore Anime',
+                    style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SnackBar(
               content: Text(response.message, style: const TextStyle(color: Colors.white)), 
               backgroundColor: Colors.redAccent,
-              behavior: SnackBarBehavior.floating, // 👈 SnackBar แบบลอย ดูทันสมัย
+              behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             ),
           );
@@ -60,14 +60,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // 🎨 สีที่ใช้ในธีม Midnight Blue + Electric Cyan
     const Color midnightBG = Color(0xFF0F172A);
     const Color surfaceBlue = Color(0xFF1B2A4E);
     const Color electricCyan = Color(0xFF00D1FF);
 
     return Scaffold(
       backgroundColor: midnightBG,
-      // 🌟 ยกเลิก AppBar เพื่อใช้หน้าจอเต็มๆ ดูพรีเมียม
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -78,7 +76,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // 🌟 1. โลโก้แบบจัดเต็ม (ใช้ Container สร้างขอบเรืองแสง)
                   Container(
                     padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
@@ -86,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: electricCyan.withOpacity(0.3),
+                          color: electricCyan.withValues(alpha: 0.3), // 👈 แก้ตรงนี้
                           blurRadius: 20,
                           spreadRadius: 5,
                         ),
@@ -95,8 +92,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: const Icon(Icons.rocket_launch_rounded, size: 60, color: electricCyan),
                   ),
                   const SizedBox(height: 30),
-                  
-                  // 🌟 2. ข้อความต้อนรับ
                   const Text(
                     'Anime Explorer',
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: 1.2),
@@ -105,12 +100,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 8),
                   Text(
                     'Unlock the world of Anime',
-                    style: TextStyle(fontSize: 16, color: Colors.grey[400]),
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 60),
-
-                  // 🌟 3. ช่อง Username (Styling จัดเต็ม)
                   TextFormField(
                     controller: _usernameController,
                     style: const TextStyle(color: Colors.white),
@@ -120,20 +113,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: const Icon(Icons.person_outline, color: electricCyan),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: surfaceBlue.withOpacity(0.5)),
+                        borderSide: BorderSide(color: surfaceBlue.withValues(alpha: 0.5)), // 👈 แก้ตรงนี้
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                         borderSide: const BorderSide(color: electricCyan, width: 2),
                       ),
                       filled: true,
-                      fillColor: surfaceBlue, // 👈 สีช่องกรอกเข้มๆ ดูมีมิติ
+                      fillColor: surfaceBlue,
                     ),
                     validator: (value) => value!.isEmpty ? 'Please enter your username' : null,
                   ),
                   const SizedBox(height: 20),
-
-                  // 🌟 4. ช่อง Password
                   TextFormField(
                     controller: _passwordController,
                     style: const TextStyle(color: Colors.white),
@@ -143,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       prefixIcon: const Icon(Icons.lock_outline, color: electricCyan),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: surfaceBlue.withOpacity(0.5)),
+                        borderSide: BorderSide(color: surfaceBlue.withValues(alpha: 0.5)), // 👈 แก้ตรงนี้
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -156,18 +147,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: (value) => value!.isEmpty ? 'Please enter your password' : null,
                   ),
                   const SizedBox(height: 40),
-
-                  // 🌟 5. ปุ่ม Login (Gradient Look - สี Cyan สว่าง)
                   SizedBox(
                     height: 55,
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: electricCyan, // 👈 ปุ่มสี Cyan สว่าง
-                        foregroundColor: midnightBG, // 👈 ตัวหนังสือสีเข้มตัดกัน
+                        backgroundColor: electricCyan,
+                        foregroundColor: midnightBG,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         elevation: 10,
-                        shadowColor: electricCyan.withOpacity(0.5), // 👈 เงาเรืองแสงของปุ่ม
+                        shadowColor: electricCyan.withValues(alpha: 0.5), // 👈 แก้ตรงนี้
                       ),
                       onPressed: _isLoading ? null : _login,
                       child: _isLoading 
@@ -179,11 +168,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 50),
-                  
-                  // 🌟 6. ชื่อผู้พัฒนาสำหรับการส่งความคืบหน้า
-                  Text(
+                  const Text(
                     'Developed with 💙 on Mac Air M3 by Atithep Choosuwan\nStudent ID: 6706896', 
-                    style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
                 ],
