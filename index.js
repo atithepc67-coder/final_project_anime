@@ -9,11 +9,11 @@ app.use(express.json());
 const animeList = [
   {
     "id": 1,
-    "name": "Solo Leveling",
-    "detail": "In a world where hunters battle deadly monsters to protect mankind, Sung Jinwoo, known as the weakest hunter of all mankind, discovers a mysterious system that allows him to level up infinitely.",
+    "name": "Frieren: Beyond Journey's End",
+    "detail": "Elf mage Frieren and her courageous fellow adventurers have defeated the Demon King and brought peace to the land. As the years pass, Frieren realizes how short human lives are and begins a new journey to understand humanity.",
     "coverimage": "https://cdn.myanimelist.net/images/anime/1015/138006.jpg",
-    "rating": "9.1",
-    "episodes": "12"
+    "rating": "9.3",
+    "episodes": "28"
   },
   {
     "id": 2,
